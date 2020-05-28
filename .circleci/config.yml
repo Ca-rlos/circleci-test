@@ -1,0 +1,29 @@
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
+jobs:
+  build-and-test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
+            - run: npm test
+  deploy:
+    docker:
+      - image: google/cloud-sdk
+    steps:
+      - checkout
+      - run: |
+          echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
+          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+          gcloud app deploy app.yaml
+workflows:
+    build-test-deploy:
+      jobs:
+        - build-and-test
+        - deploy:
+            requires: 
+              - build-and-test
