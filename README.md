@@ -1,6 +1,6 @@
 # CircleCI Sample Deployment [![Ca-rlos](https://circleci.com/gh/Ca-rlos/circleci-test.svg?style=shield)](https://circleci.com/gh/Ca-rlos/circleci-test)
 
-A small web application deployed using CircleCI, made for the company's technical challenge.
+A small web application deployed using CircleCI.
 
 ## Components
 * Runtime: Node.js
