@@ -14,4 +14,7 @@
 # [START runtime]
 runtime: nodejs12
 service: circleci
+handlers:
+  -url: /static
+   static_dir: public/images
 # [END runtime]
